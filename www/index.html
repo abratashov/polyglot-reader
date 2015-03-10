@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html ng-app="polyglotReader">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/application.css">
+
+    <script src="/lib/underscore.js"></script>
+    <script src="/lib/angular.js"></script>
+    <script src="/lib/angular-underscore.js"></script>
+    <script src="/lib/angular-local-storage.js"></script>
+    <script src="/lib/angular-resource.js"></script>
+    <script src="/lib/jquery-2.1.3.js"></script>
+
+    <script src="/js/application.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/controllers.js"></script>
+  </head>
+  <body>
+    <div ng-controller="MainCtrl">
+      <h3>Polyglot Reader</h3>
+      <p>For best reading and memorize words.<p>
+      <input ng-model="word">
+      <button ng-click='addWord()'>Add</button><br>
+
+      <textarea ng-model="dictionary"></textarea>
+      <button ng-click='saveDictionary()'>Save Dictionary</button><br>
+
+      <textarea ng-model="text"></textarea>
+      <button ng-click='extractNewWords()'>Extract New Words</button><br>
+      <button ng-click='translate()'>Translate New Words</button><br>
+
+      New words:
+      <div ng-repeat="word in new_words">
+        <table>
+          <tr>
+            <td width='100px'>{{word}}</td>
+            <td>{{translations[$index]}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div align="center">
+      </div>
+    </div>
+  </body>
+</html>
