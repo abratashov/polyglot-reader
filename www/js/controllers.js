@@ -1,17 +1,17 @@
 angular.module('polyglotReader')
-  .controller('MainCtrl', function ($scope, localStorageService, Translator) {
+  .controller('MainCtrl', function ($scope, localStorageService, Translator, $window) {
 
-    $scope.dictionary = localStorageService.get('en_dict')
+    $scope.dictionary = localStorageService.get('en_dict');
 
-    $scope.addWord = function() {
-      var word = $scope.word.toLowerCase().trim();
-      if(word){
+    $scope.addWords = function() {
+      var words = normalizeWords($scope.added_words.split(',')).join(',')
+      if(words){
         var dictionary = localStorageService.get('en_dict');
         dictionary = dictionary || '';
-        dictionary = dictionary + ',' + word;
+        dictionary = dictionary + ',' + words;
         dictionary = normalizeWords(dictionary.split(','));
         localStorageService.set('en_dict', dictionary);
-        $scope.word = '';
+        $scope.added_words = '';
         $scope.dictionary = dictionary.join(',');
       }
     };
